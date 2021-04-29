@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
+
+$color-text: rgb(36, 36, 250);
+
+html,
+body {
+	font-family: "Ubuntu", sans-serif;
+	color: $color-text;
+}
+
+.nameFlagsImg {
+	margin-right: 10px;
+}
