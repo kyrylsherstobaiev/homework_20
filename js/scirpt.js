@@ -33,17 +33,27 @@ const COUNTRIES = [
 	},
 ];
 const accordionFlags = document.querySelector('#accordionFlags');
+const renderCountries = document.querySelector('#renderCountries');
+const wrapper = document.querySelector('#wrapper');
+
+const OneCountry = {
+	PlanetEarth: data => new PlanetEarth(data),
+	China: data => new China(data)
+}
 
 class Countries {
 	static createCountries(arr) {
-		console.log(arr);
 
 		let items = arr
-			.map(country => new Country(country))
+			.map(country => OneCountry[country.name.replace(' ', '')] ? OneCountry[country.name.replace(' ', '')](country) : new Country(country));
+
+		let CountriesAcc = items
 			.map(country => country.renderCountries())
 			.join('');
 
-		accordionFlags.innerHTML = items;
+		items.map(country => country.renderImgTop());
+
+		accordionFlags.innerHTML = CountriesAcc;
 	}
 }
 
@@ -71,6 +81,41 @@ class Country {
 		</div>
 	</div>`
 	}
+	renderImgTop() {
+		let flagImg = document.createElement('div');
+		flagImg.id = `render_${this.name.replace(' ', '')}`;
+		flagImg.innerHTML = `<img src="./images/${this.name}.svg"><p>${this.name}</p>`;
+		flagImg.className = `ImgTop`
+		flagImg.addEventListener('click', () => {
+			let btn = document.querySelector(`button[aria-controls="collapse${this.name.replace(' ', '')}"]`)
+			btn.click();
+		})
+		renderCountries.append(flagImg);
+	}
+}
+
+class PlanetEarth extends Country {
+	constructor(country) {
+		super(country);
+	}
+	renderImgTop() {
+		let planetEarth = document.createElement('h2');
+		planetEarth.id = `render_${this.name.replace(' ', '')}`;
+		planetEarth.innerHTML = `<img src="./images/${this.name}.svg" width=40> Hello Earth`;
+		planetEarth.atl - this.name;
+		planetEarth.addEventListener('click', () => {
+			let btn = document.querySelector(`button[aria-controls="collapse${this.name.replace(' ', '')}"]`)
+			btn.click();
+		})
+		wrapper.prepend(planetEarth);
+	}
+}
+class China extends Country {
+	constructor(country) {
+		super(country);
+	}
+	//renderImgTop() {
+	//}
 }
 
 Countries.createCountries(COUNTRIES);

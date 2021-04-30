@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
 
-$color-text: rgb(36, 36, 250);
+$color-text: rgb(12, 12, 12);
+$color-head: rgb(219, 78, 78);
 
 html,
 body {
@@ -8,6 +9,38 @@ body {
 	color: $color-text;
 }
 
+#render_PlanetEarth {
+	text-align: center;
+	margin-top: 20px;
+	color: $color-head;
+}
+
+.ImgTop {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
 .nameFlagsImg {
 	margin-right: 10px;
+}
+
+.render {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin: 50px 0;
+	img {
+		margin-right: 50px;
+		width: 40px;
+		cursor: pointer;
+		transition: 0.2;
+		&:hover{
+			transform: scale(1.3);
+		}
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
 }
