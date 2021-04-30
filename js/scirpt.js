@@ -38,7 +38,8 @@ const wrapper = document.querySelector('#wrapper');
 
 const OneCountry = {
 	PlanetEarth: data => new PlanetEarth(data),
-	China: data => new China(data)
+	China: data => new China(data),
+	Italy: data => new Italy(data)
 }
 
 class Countries {
@@ -46,6 +47,7 @@ class Countries {
 
 		let items = arr
 			.map(country => OneCountry[country.name.replace(' ', '')] ? OneCountry[country.name.replace(' ', '')](country) : new Country(country));
+			console.log(items);
 
 		let CountriesAcc = items
 			.map(country => country.renderCountries())
@@ -117,10 +119,23 @@ class China extends Country {
 	}
 	countryClick() {
 		super.countryClick();
-		this.countryAlert();
+		this.chinaAlert();
 	}
-	countryAlert() {
+	chinaAlert() {
 		alert(`${this.name}, officially the People's Republic of China (PRC), is a country in East Asia. It is the world's most populous country, with a population of around 1.4 billion.[8] Covering approximately 9.6 million square kilometers (3.7 million mi2), it is the world's third or fourth-largest country by area.[k] The country is officially divided into 23 provinces,[l][18] five autonomous regions, four direct-controlled municipalities (Beijing, Tianjin, Shanghai, and Chongqing), and two special administrative regions of Hong Kong and Macau.`)
+	}
+}
+
+class Italy extends Country {
+	constructor(country) {
+		super(country);
+	}
+	countryClick() {
+		super.countryClick();
+		this.italyAlert();
+	}
+	italyAlert() {
+		alert(`${this.name}, Italy (Italian: Italia [iˈtaːlja] (About this soundlisten)), officially the Italian Republic (Italian: Repubblica Italiana [reˈpubːlika itaˈljaːna]),[16][17][18][19] is a country consisting of a continental part, delimited by the Alps, a peninsula and several islands surrounding it. Italy is located in Southern Europe,[20][21] and is also considered part of Western Europe.[22][23] A unitary parliamentary republic with Rome as its capital, the country covers a total area of 301,340 km2 (116,350 sq mi) and shares land borders with France, Switzerland, Austria, Slovenia, and the enclaved microstates of Vatican City and San Marino. Italy has a territorial enclave in Switzerland (Campione) and a maritime exclave in Tunisian waters (Lampedusa). With around 60 million inhabitants, Italy is the third-most populous member state of the European Union.`)
 	}
 }
 
