@@ -86,11 +86,12 @@ class Country {
 		flagImg.id = `render_${this.name.replace(' ', '')}`;
 		flagImg.innerHTML = `<img src="./images/${this.name}.svg"><p>${this.name}</p>`;
 		flagImg.className = `ImgTop`
-		flagImg.addEventListener('click', () => {
-			let btn = document.querySelector(`button[aria-controls="collapse${this.name.replace(' ', '')}"]`)
-			btn.click();
-		})
+		flagImg.addEventListener('click', this.countryClick.bind(this));
 		renderCountries.append(flagImg);
+	}
+	countryClick() {
+		let btn = document.querySelector(`button[aria-controls="collapse${this.name.replace(' ', '')}"]`)
+		btn.click();
 	}
 }
 
@@ -114,8 +115,13 @@ class China extends Country {
 	constructor(country) {
 		super(country);
 	}
-	//renderImgTop() {
-	//}
+	countryClick() {
+		super.countryClick();
+		this.countryAlert();
+	}
+	countryAlert() {
+		alert(`${this.name}, officially the People's Republic of China (PRC), is a country in East Asia. It is the world's most populous country, with a population of around 1.4 billion.[8] Covering approximately 9.6 million square kilometers (3.7 million mi2), it is the world's third or fourth-largest country by area.[k] The country is officially divided into 23 provinces,[l][18] five autonomous regions, four direct-controlled municipalities (Beijing, Tianjin, Shanghai, and Chongqing), and two special administrative regions of Hong Kong and Macau.`)
+	}
 }
 
 Countries.createCountries(COUNTRIES);
